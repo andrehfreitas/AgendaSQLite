@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(adapter);
 
+
         adapter.setClickListener(new ContatoAdapter.ItemClickListener() {
             @Override
             public void onItemClick(int position) {
@@ -81,17 +83,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
 
-                  Contato c =  adapter.getContactListFiltered().get(viewHolder.getAdapterPosition());
-                  dao.excluirContato(c);
-                  adapter.apagaContatoAdapter(c);
-                  Toast.makeText(getApplicationContext(),"Contato apagado", Toast.LENGTH_LONG).show();
+                Contato c =  adapter.getContactListFiltered().get(viewHolder.getAdapterPosition());
+                dao.excluirContato(c);
+                adapter.apagaContatoAdapter(c);
+                Toast.makeText(getApplicationContext(),"Contato apagado", Toast.LENGTH_LONG).show();
 
             }
 
             @Override
             public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,
-                                    float dX, float dY, int actionState, boolean isCurrentlyActive)
-            {
+                                    float dX, float dY, int actionState, boolean isCurrentlyActive){
                 Bitmap icon;
                 Paint p = new Paint();
 
@@ -114,9 +115,6 @@ public class MainActivity extends AppCompatActivity {
 
                 super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
             }
-
-
-
 
         };
 
